@@ -2,36 +2,10 @@ import React, { useState } from "react";
 // import { ProgressBar } from "react-bootstrap";
 import "../App.css";
 import Stages from "./Stages";
+import { ancProgresBarContents } from "../utils/data";
 
 const Progress = () => {
   const [currentStep, setCurrentStep] = useState(1);
-
-  const ancProgresBarContents = [
-    {
-      index: 1,
-      content: "Document Type",
-    },
-    {
-      index: 2,
-      content: "Select Annex",
-    },
-    {
-      index: 3,
-      content: "Annex Version",
-    },
-    {
-      index: 4,
-      content: "Document Type",
-    },
-    {
-      index: 5,
-      content: "Annex Section",
-    },
-    {
-      index: 6,
-      content: "Confirm",
-    },
-  ];
 
   // Handler for next step
   const handleNext = () => {

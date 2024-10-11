@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { annexes } from "../utils/data";
+import ProvisionList from "./ProvisionList";
 
 const Stages = ({ stage }) => {
   // State to manage the selected option
@@ -8,26 +10,6 @@ const Stages = ({ stage }) => {
   const handleRadioChange = (event) => {
     setSelectedOption(event.target.value);
   };
-
-  const annexes = [
-    "Annex 1 PERSONNEL LICENSING",
-    "Annex 2 RULES OF THE AIR",
-    "Annex 3 METEOROLOGICAL SERVICE FOR INTERNATIONAL AIR NAVIGATION PART I - CORE SARPs",
-    "Annex 4 AERONAUTICAL CHARTS",
-    "Annex 5 UNITS OF MEASUREMENT TO BE USED IN AIR AND GROUND OPERATIONS",
-    "Annex 6 OPERATION OF AIRCRAFT PART I INTERNATIONAL COMMERICIAL AIR TRANSPORT - AEROPLANES",
-    "Annex 6 OPERATION OF AIRCRAFT PART II INTERNATIONAL GENERAL AVIATION - AEROPLANES",
-    "Annex 6 OPERATION OF AIRCRAFT PART III INTERNATIONAL OPERATIONS - HELICOPTERS",
-    "Annex 6 OPERATION OF AIRCRAFT PART IV - International Operations - Remotely Piloted Aircraft Systems",
-    "Annex 7 AIRCRAFT NATIONALITY AND REGISTRATION MARKS",
-    "Annex 8 AIRWORTHINESS OF AIRCRAFT",
-    "Annex 9 FACILITATION",
-    "Annex 10 AERONAUTICAL TELECOMMUNICATIONS VOLUME I RADIO NAVIGATION AIDS",
-    "Annex 10 AERONAUTICAL TELECOMMUNICATIONS VOLUME II COMMUNICATION PROCEDURES INCLUDING THOSE WITH PANS STATUS",
-    "Annex 10 AERONAUTICAL TELECOMMUNICATIONS VOLUME III PART I - DIGITAL DATA COMMUNICATION SYSTEMS; PART II - VOICE COMMUNICATION SYSTEMS",
-    "Annex 10 AERONAUTICAL TELECOMMUNICATIONS VOLUME IV SURVEILLANCE RADAR AND COLLISION AVOIDANCE SYSTEMS",
-    "Annex 10 AERONAUTICAL TELECOMMUNICATIONS VOLUME V AERONAUTICAL RADIO FREQUENCY SPECTRUM UTILIZATION",
-  ];
 
   switch (stage) {
     case 1:
@@ -89,24 +71,7 @@ const Stages = ({ stage }) => {
         </div>
       );
     case 2:
-      return (
-        <div className="container mt-4">
-          <h3>Select Annexes</h3>
-          {annexes.map((annex, index) => (
-            <div key={index} className="form-check mb-3">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id={`annex-${index}`}
-              />
-              <label className="form-check-label" htmlFor={`annex-${index}`}>
-                {annex}
-              </label>
-              <hr />
-            </div>
-          ))}
-        </div>
-      );
+      return <ProvisionList type="annexes" />;
     case 3:
       return (
         // <div className="container mt-4">
@@ -192,6 +157,12 @@ const Stages = ({ stage }) => {
           </div>
         </>
       );
+
+    case 4:
+      return <ProvisionList type="Chapters" />;
+
+    case 5:
+      return <ProvisionList type="Provision" />;
     default:
       return (
         <div className="container">No content available for this stage</div>
