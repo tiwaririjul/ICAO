@@ -1,9 +1,10 @@
 import "./App.css";
+import Progress from "./components/Progress";
 
 function App() {
   return (
     <>
-      <div className="text-success">hello</div>
+      <Progress />
     </>
   );
 }
