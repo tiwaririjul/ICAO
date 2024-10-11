@@ -54,15 +54,18 @@ const NavBar = () => {
               >
                 State Letter
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item text-white" href="#">
+              <div
+                class="dropdown-menu text-white"
+                aria-labelledby="navbarDropdown"
+              >
+                <a class="dropdown-item" href="#">
                   State Letter viewer
                 </a>
-                <a class="dropdown-item text-white" href="#">
+                <a class="dropdown-item" href="#">
                   Another action
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-white" href="#">
+                <a class="dropdown-item" href="#">
                   Something else here
                 </a>
               </div>

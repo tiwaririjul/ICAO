@@ -71,26 +71,9 @@ const Stages = ({ stage }) => {
         </div>
       );
     case 2:
-      return <ProvisionList type="annexes" />;
+      return <ProvisionList type="annexes" isProvision={false} />;
     case 3:
       return (
-        // <div className="container mt-4">
-        //   <h3>Select Annexes</h3>
-        //   {annexes.map((annex, index) => (
-        //     <div key={index} className="form-check mb-3">
-        //       <input
-        //         type="checkbox"
-        //         className="form-check-input"
-        //         id={`annex-${index}`}
-        //       />
-        //       <label className="form-check-label" htmlFor={`annex-${index}`}>
-        //         {annex}
-        //       </label>
-        //       <hr />
-        //     </div>
-        //   ))}
-        // </div>
-
         <>
           <div class="container mt-4">
             <div class="row">
@@ -154,10 +137,11 @@ const Stages = ({ stage }) => {
       );
 
     case 4:
-      return <ProvisionList type="Chapters" />;
+      return <ProvisionList type="Chapters" isProvision={false} />;
 
     case 5:
-      return <ProvisionList type="Provision" />;
+      return <ProvisionList type="Provision" isProvision={true}/>;
+
     default:
       return (
         <div className="container">No content available for this stage</div>
