@@ -1,6 +1,7 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Progress from "./components/Progress";
+import SLinputs from "./components/SLinputs";
 
 function App() {
   const datas = [
@@ -22,6 +23,7 @@ function App() {
     <>
       <NavBar />
       <Progress />
+      {/* <SLinputs /> */}
     </>
   );
 }

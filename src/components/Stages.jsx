@@ -126,12 +126,7 @@ const Stages = ({ stage }) => {
                 </div>
               </div>
               <div class="col-6">
-                {/* <div class="mb-3">
-                  <label for="input4" class="form-label">
-                    Amenment
-                  </label>
-                  <input type="text" class="form-control" id="input4" />
-                </div> */}
+                
 
                 <div class="mb-3">
                   <label for="document">Document</label>
@@ -144,7 +139,7 @@ const Stages = ({ stage }) => {
                   <label for="input5" class="form-label">
                     State letter Date
                   </label>
-                  <input type="text" class="form-control" id="input5" />
+                  <input type="date" class="form-control" id="input5" />
                 </div>
               </div>
               <div class="mb-3 col-md-4">
