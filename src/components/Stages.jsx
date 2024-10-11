@@ -107,6 +107,91 @@ const Stages = ({ stage }) => {
           ))}
         </div>
       );
+    case 3:
+      return (
+        // <div className="container mt-4">
+        //   <h3>Select Annexes</h3>
+        //   {annexes.map((annex, index) => (
+        //     <div key={index} className="form-check mb-3">
+        //       <input
+        //         type="checkbox"
+        //         className="form-check-input"
+        //         id={`annex-${index}`}
+        //       />
+        //       <label className="form-check-label" htmlFor={`annex-${index}`}>
+        //         {annex}
+        //       </label>
+        //       <hr />
+        //     </div>
+        //   ))}
+        // </div>
+
+        <>
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="input1" class="form-label">
+                    Title
+                  </label>
+                  <input type="text" class="form-control" id="input1" />
+                </div>
+                {/* <div class="mb-3">
+                  <label for="input2" class="form-label">
+                    Language
+                  </label>
+                  <input type="text" class="form-control" id="input2" />
+                </div> */}
+
+                <div class="mb-3">
+                  <label for="document">Document</label>
+                  <select class="form-control" id="document">
+                    <option value="1">Language</option>
+                    <option value="2">French</option>
+                    <option value="3">English</option>
+                    <option value="4">Espanol</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="input3" class="form-label">
+                    Edition
+                  </label>
+                  <input type="text" class="form-control" id="input3" />
+                </div>
+              </div>
+              <div class="col-6">
+                {/* <div class="mb-3">
+                  <label for="input4" class="form-label">
+                    Amenment
+                  </label>
+                  <input type="text" class="form-control" id="input4" />
+                </div> */}
+
+                <div class="mb-3">
+                  <label for="document">Document</label>
+                  <select class="form-control" id="document">
+                    <option value="1">version 178[178]</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="input5" class="form-label">
+                    State letter Date
+                  </label>
+                  <input type="text" class="form-control" id="input5" />
+                </div>
+              </div>
+              <div class="mb-3 col-md-4">
+                <label for="input6" class="form-label">
+                  Upload file
+                </label>
+                <input type="file" class="form-control" id="input6" />
+              </div>
+            </div>
+          </div>
+        </>
+      );
     default:
       return (
         <div className="container">No content available for this stage</div>
