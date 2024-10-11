@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import { ProgressBar } from "react-bootstrap";
 import "../App.css";
+import Stages from "./Stages";
 
 const Progress = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -12,11 +13,11 @@ const Progress = () => {
     },
     {
       index: 2,
-      content: "Annex Version",
+      content: "Select Annex",
     },
     {
       index: 3,
-      content: "Annex Section",
+      content: "Annex Version",
     },
     {
       index: 4,
@@ -77,6 +78,9 @@ const Progress = () => {
           </div>
         ))}
       </div>
+
+      <Stages stage={currentStep} />
+
       <div className="navigation-buttons">
         <button onClick={handlePrev} disabled={currentStep === 1}>
           Previous
