@@ -8,7 +8,7 @@ function App() {
     <>
       <NavBar />
       <Progress />
-      <SLinputs />
+      {/* <SLinputs /> */}
     </>
   );
 }
