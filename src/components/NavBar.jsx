@@ -15,7 +15,7 @@ const NavBar = () => {
       />
       <nav
         class="navbar navbar-expand-lg navbar-light "
-        style={{ backgroundColor: "#0054A4" }}
+        style={{ backgroundColor: "#0054A4", padding: "20px 20px" }}
       >
         <a class="navbar-brand text-white">Navbar</a>
 

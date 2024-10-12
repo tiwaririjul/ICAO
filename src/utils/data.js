@@ -31,11 +31,11 @@ export const ancProgresBarContents = [
   },
   {
     index: 4,
-    content: "Document Type",
+    content: "Chapters",
   },
   {
     index: 5,
-    content: "Annex Section",
+    content: "Provisions",
   },
   {
     index: 6,

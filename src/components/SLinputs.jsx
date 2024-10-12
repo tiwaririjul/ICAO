@@ -1,25 +1,4 @@
 import React from "react";
-
-{
-  /* <div className="col-md-4 offset-md-4">
-        <div className="btn-group">
-          <button className="btn btn-primary">
-            <i className="fas fa-angle-double-left"></i>
-          </button>
-          <button className="btn btn-primary">
-            <i className="fas fa-angle-left"></i>
-          </button>
-          <button className="btn btn-primary">1.0</button>
-          <button className="btn btn-primary">
-            <i className="fas fa-angle-right"></i>
-          </button>
-          <button className="btn btn-primary">
-            <i className="fas fa-angle-double-right"></i>
-          </button>
-        </div>
-      </div> */
-}
-
 const SLinputs = () => {
   return (
     <>

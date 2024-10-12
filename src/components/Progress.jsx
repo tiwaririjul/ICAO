@@ -24,15 +24,6 @@ const Progress = () => {
   return (
     <div class="container">
       <div class="stepper">
-        {/* <div class="step active completed">
-          <div class="step-icon">
-            <i class="fas fa-shopping-cart"></i>
-          </div>
-          <div class="step-text">
-            Document Type <i class="fas fa-check-circle"></i>
-          </div>
-        </div> */}
-
         {ancProgresBarContents.map((ancProgresBarContent) => (
           <div
             className={`step  ${
