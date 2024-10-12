@@ -126,8 +126,6 @@ const Stages = ({ stage }) => {
                 </div>
               </div>
               <div class="col-6">
-                
-
                 <div class="mb-3">
                   <label for="document">Document</label>
                   <select class="form-control" id="document">
