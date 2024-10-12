@@ -71,7 +71,7 @@ const Stages = ({ stage }) => {
         </div>
       );
     case 2:
-      return <ProvisionList type="annexes" isProvision={false} />;
+      return <ProvisionList type="annexes" />;
     case 3:
       return (
         <>
@@ -109,8 +109,6 @@ const Stages = ({ stage }) => {
                 </div>
               </div>
               <div class="col-6">
-                
-
                 <div class="mb-3">
                   <label for="document">Document</label>
                   <select class="form-control" id="document">
@@ -137,10 +135,10 @@ const Stages = ({ stage }) => {
       );
 
     case 4:
-      return <ProvisionList type="Chapters" isProvision={false} />;
+      return <ProvisionList type="Chapters"  />;
 
     case 5:
-      return <ProvisionList type="Provision" isProvision={true}/>;
+      return <ProvisionList type="Provision"  />;
 
     default:
       return (
