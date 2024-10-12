@@ -42,3 +42,17 @@ export const ancProgresBarContents = [
     content: "Confirm",
   },
 ];
+export const pdfContent = [
+  {
+    index: 1.0,
+    content: "../assests/ticket.pdf",
+  },
+  {
+    index: 1.5,
+    content: "../assests/ticket.pdf",
+  },
+  {
+    index: 2.0,
+    content: "../assests/ticket.pdf",
+  },
+];

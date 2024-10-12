@@ -1,5 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import SLComment from "./SLcomment";
+import { pdfContent } from "../utils/data";
 const SLinputs = () => {
+  // Initialize state with the first PDF in the array
+  const [selectedPdf, setSelectedPdf] = useState(pdfContent[0].content);
+
+  // Function to handle dropdown change
+  const handlePdfChange = (event) => {
+    const selectedIndex = parseFloat(event.target.value); // Get the selected index from the dropdown
+    const selectedPdfObject = pdfContent.find(
+      (elem) => elem.index === selectedIndex // Match the selected index
+    );
+
+    // Update state with the selected PDF content
+    if (selectedPdfObject) {
+      // alert(selectedPdfObject.content);
+      setSelectedPdf(selectedPdfObject.content);
+    }
+  };
+
+  useEffect(() => {}, [selectedPdf]);
+
   return (
     <>
       <div>
@@ -55,12 +76,17 @@ const SLinputs = () => {
             <i className="fas fa-angle-left"></i>
           </button>
           {/* <button className="btn btn-light">1.0</button> */}
-          <select class="btn btn-light" id="status">
-            <option value="allstatus">1.0</option>
-            <option value="allstatus">1.0</option>
-            <option value="allstatus">1.0</option>
-            <option value="allstatus">1.0</option>
-            <option value="allstatus">1.0</option>
+          <select class="btn btn-light" id="status" onChange={handlePdfChange}>
+            {/* <option value="allstatus">1.0</option>
+
+            {pdfContent.map((elem) => (
+              <option key={elem.index} value={elem.index}>
+                {elem.index}
+              </option>
+            ))} */}
+            <option value="allstatus1">1.0</option>
+            <option value="allstatus2">2.0</option>
+            <option value="allstatus3">3.0</option>
           </select>
 
           <button className="btn btn-light">
@@ -73,6 +99,7 @@ const SLinputs = () => {
 
         <div></div>
       </div>
+      <SLComment />
     </>
   );
 };
