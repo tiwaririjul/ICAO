@@ -42,3 +42,50 @@ export const ancProgresBarContents = [
     content: "Confirm",
   },
 ];
+
+export const progressContent = [
+  {
+    index: 1,
+    annexOrPans: null,
+  },
+  {
+    index: 2,
+    selectAnnex: null,
+  },
+  {
+    index: 3,
+    uploadSlLetter: [
+      {
+        title: null,
+      },
+      {
+        language: null,
+      },
+      {
+        document: null,
+      },
+      {
+        startLetterDate: null,
+      },
+      {
+        edition: null,
+      },
+      {
+        fileUpload: null,
+      },
+    ],
+  },
+  {
+    index: 4,
+    selectChapters: null,
+  },
+
+  {
+    index: 5,
+    selectProvision: null,
+  },
+  {
+    index: 6,
+    confirm: null,
+  },
+];

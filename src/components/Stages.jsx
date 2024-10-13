@@ -5,12 +5,15 @@ import ProvisionList from "./ProvisionList";
 import SelectAnnexes from "./stages/SelectAnnexes";
 import UploadStateLetter from "./stages/UploadStateLetter";
 
-const Stages = ({ stage }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
+const Stages = ({ stage, selectedAnnexPan, setSelectedAnnexPan }) => {
   switch (stage) {
     case 1:
-      return <SelectAnnexes />;
+      return (
+        <SelectAnnexes
+          selectedAnnexPan={selectedAnnexPan}
+          setSelectedAnnexPan={setSelectedAnnexPan}
+        />
+      );
     case 2:
       return <ProvisionList type="annexes" />;
     case 3:
