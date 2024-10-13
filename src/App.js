@@ -10,24 +10,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import the styles
 import "@react-pdf-viewer/core/lib/styles/index.css";
+import SLComment from "./components/SLcomment";
 
 function App() {
   // const pdfUrl = "./assests/ticket.pdf";
 
   return (
     <>
-      {/* <NavBar />
-      <Progress /> */}
-      {/* <SLinputs /> */}
-      {/* <PdfViewer pdfUrl={pdfUrl} /> */}
-      {/* <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js"> */}
-      {/* <Viewer fileUrl={ticketPdf} />; */}
-      {/* <NavBar /> */}
-      {/* <SLinputs />
-        <PdfViewer pdfUrl={ticketPdf} /> */}
-      {/* <Progress /> */}
-      {/* </Worker> */}
-
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
         <Router>
           <NavBar />
@@ -36,6 +25,7 @@ function App() {
             <Route path="/state-letter" element={<SLinputs />} />
           </Routes>
         </Router>
+        {/* <SLComment /> */}
       </Worker>
     </>
   );

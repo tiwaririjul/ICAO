@@ -89,3 +89,17 @@ export const progressContent = [
     confirm: null,
   },
 ];
+export const pdfContent = [
+  {
+    index: 1.0,
+    content: require("../assests/ticket.pdf"),
+  },
+  {
+    index: 1.5,
+    content: require("../assests/ticket.pdf"),
+  },
+  {
+    index: 2.0,
+    content: require("../assests/ticket.pdf"),
+  },
+];
