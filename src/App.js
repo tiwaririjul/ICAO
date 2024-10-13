@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import the styles
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import SLComment from "./components/SLcomment";
+import SLtrack from "./components/SLtrack";
 
 function App() {
   // const pdfUrl = "./assests/ticket.pdf";
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/progress" element={<Progress />} />
             <Route path="/state-letter" element={<SLinputs />} />
+            <Route path="/track" element={<SLtrack />} />
           </Routes>
         </Router>
         {/* <SLComment /> */}
