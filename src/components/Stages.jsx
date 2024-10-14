@@ -53,14 +53,13 @@ const Stages = ({ stage }) => {
         chapters,
       };
       localStorage.setItem("progressData", JSON.stringify(storedData));
-      alert("stored");
+      // alert("stored");
     }
   }, [selectedAnnexPan, selectedAnnexes, stateLetterInfo, chapters]);
 
-  // useEffect(() => {
-  //   alert(chapters);
-  //   // console.log(stateLetterInfo);
-  // }, [chapters]);
+  useEffect(() => {
+    console.log(stateLetterInfo);
+  }, [stateLetterInfo]);
 
   switch (stage) {
     case 1:
@@ -79,7 +78,12 @@ const Stages = ({ stage }) => {
         />
       );
     case 3:
-      return <UploadStateLetter setStateLetterInfo={setStateLetterInfo} />;
+      return (
+        <UploadStateLetter
+          setStateLetterInfo={setStateLetterInfo}
+          stateLetterInfo={stateLetterInfo}
+        />
+      );
 
     case 4:
       return (

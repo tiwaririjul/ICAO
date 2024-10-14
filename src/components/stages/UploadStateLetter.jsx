@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadStateLetter = ({ setStateLetterInfo }) => {
+const UploadStateLetter = ({ setStateLetterInfo, stateLetterInfo }) => {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setStateLetterInfo((prev) => ({
@@ -30,6 +30,7 @@ const UploadStateLetter = ({ setStateLetterInfo }) => {
                 type="text"
                 className="form-control"
                 id="title"
+                value={stateLetterInfo.title}
                 onChange={handleInputChange}
               />
             </div>
@@ -39,6 +40,7 @@ const UploadStateLetter = ({ setStateLetterInfo }) => {
               <select
                 className="form-control"
                 id="language"
+                value={stateLetterInfo.language}
                 onChange={handleInputChange}
               >
                 <option value="1">Language</option>
@@ -56,6 +58,7 @@ const UploadStateLetter = ({ setStateLetterInfo }) => {
                 type="text"
                 className="form-control"
                 id="edition"
+                value={stateLetterInfo.edition}
                 onChange={handleInputChange}
               />
             </div>

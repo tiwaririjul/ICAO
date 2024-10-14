@@ -23,11 +23,12 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/progress" element={<Progress />} />
-            <Route path="/state-letter" element={<SLinputs />} />
+            <Route path="/stateletter" element={<SLinputs />} />
             <Route path="/track" element={<SLtrack />} />
           </Routes>
         </Router>
         {/* <SLComment /> */}
+        {/* <SLtrack/> */}
       </Worker>
     </>
   );
