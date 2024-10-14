@@ -1,103 +1,121 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PdfViewer from "./PdfViewer";
-import pdfUrl from "../assests/ticket.pdf";
-// ../assests/ticket.pdf
-// ../assests/ticket.pdf
+import { states } from "../utils/data";
 
 const SLComment = ({ selectedPdf }) => {
-  // alert(selectedPdf);
+  const [detail, setDetail] = useState({});
+  const [selectedState, setSelectedState] = useState("");
+  const [comments, setComments] = useState({
+    compliance: "",
+    stateReference: "",
+    detailsOfDifference: "",
+    remarks: "",
+  });
+
+  const handlePdfChange = (e) => {
+    setSelectedState(e.target.value);
+    console.log("state selected ", e.target.value);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setComments((prevComments) => ({
+      ...prevComments,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const index = selectedPdf.index;
+    const pdfContent = String(selectedPdf.content);
+
+    const detailsToStore = {
+      state: {
+        state: selectedState,
+        pdfContent: pdfContent,
+        comments: comments,
+        provisionNo: index,
+      },
+    };
+
+    setDetail((prevDetails) => ({
+      ...prevDetails,
+      [index]: detailsToStore.state,
+    }));
+
+    localStorage.setItem(selectedState, JSON.stringify(detail));
+
+    setSelectedState("");
+    setComments({
+      compliance: "",
+      stateReference: "",
+      detailsOfDifference: "",
+      remarks: "",
+    });
+  };
+
+  // useEffect(() => {
+  //   if (Object.keys(detail).length > 0) {
+  //     const lastIndex = Object.keys(detail).pop(); // Get the last index updated
+  //     alert(`Saved entry for state: ${detail[lastIndex].state}`);
+  //     console.log("Updated detail:", detail);
+  //   }
+  // }, [detail]);
+
   return (
     <div className="container mt-4">
       <div className="row">
         {/* PdfViewer Column */}
         <div className="col-md-6 mb-4">
-          {/* {alert(String(selectedPdf))} */}
           <div className="pdf-container border rounded p-3">
-            <PdfViewer pdfUrl={String(selectedPdf)} />
+            <PdfViewer pdfUrl={String(selectedPdf.content)} />
           </div>
         </div>
 
-        {/* SLComment Form Column */}
         <div className="col-md-6">
-          <form>
+          <div className="d-flex justify-content-end mb-3 pe-3">
+            <select
+              className="btn btn-light"
+              id="status"
+              value={selectedState}
+              onChange={handlePdfChange}
+            >
+              <option value="">Select State</option>
+              {states.map((elem) => (
+                <option key={elem.index} value={elem.state}>
+                  {elem.state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <form onSubmit={handleSubmit}>
             {/* Radio Buttons for Compliance */}
             <div className="mb-3">
               <label className="form-label fw-bold">Compliance Options</label>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="compliance"
-                  id="noDifference"
-                  value="noDifference"
-                />
-                <label className="form-check-label" htmlFor="noDifference">
-                  No difference
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="compliance"
-                  id="significantDifference"
-                  value="significantDifference"
-                />
-                <label
-                  className="form-check-label"
-                  htmlFor="significantDifference"
-                >
-                  Significant Difference
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="compliance"
-                  id="optionA"
-                  value="optionA"
-                />
-                <label className="form-check-label" htmlFor="optionA">
-                  A. More exacting or exceeds
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="compliance"
-                  id="optionB"
-                  value="optionB"
-                />
-                <label className="form-check-label" htmlFor="optionB">
-                  B. Different in character or other means of compliance
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="compliance"
-                  id="optionC"
-                  value="optionC"
-                />
-                <label className="form-check-label" htmlFor="optionC">
-                  C. Less protective or partially implemented or not implemented
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="compliance"
-                  id="notApplicable"
-                  value="notApplicable"
-                />
-                <label className="form-check-label" htmlFor="notApplicable">
-                  Not applicable
-                </label>
-              </div>
+              {[
+                "noDifference",
+                "significantDifference",
+                "optionA",
+                "optionB",
+                "optionC",
+                "notApplicable",
+              ].map((option) => (
+                <div className="form-check" key={option}>
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="compliance"
+                    id={option}
+                    value={option}
+                    onChange={handleInputChange}
+                  />
+                  <label className="form-check-label" htmlFor={option}>
+                    {option}
+                  </label>
+                </div>
+              ))}
             </div>
 
             {/* State Reference Text Area */}
@@ -108,7 +126,10 @@ const SLComment = ({ selectedPdf }) => {
               <textarea
                 className="form-control"
                 id="stateReference"
+                name="stateReference"
                 rows="2"
+                value={comments.stateReference}
+                onChange={handleInputChange}
                 placeholder="Enter state reference here"
               ></textarea>
             </div>
@@ -121,7 +142,10 @@ const SLComment = ({ selectedPdf }) => {
               <textarea
                 className="form-control"
                 id="detailsOfDifference"
+                name="detailsOfDifference"
                 rows="2"
+                value={comments.detailsOfDifference}
+                onChange={handleInputChange}
                 placeholder="Please describe the difference clearly and concisely"
               ></textarea>
             </div>
@@ -134,7 +158,10 @@ const SLComment = ({ selectedPdf }) => {
               <textarea
                 className="form-control"
                 id="remarks"
+                name="remarks"
                 rows="2"
+                value={comments.remarks}
+                onChange={handleInputChange}
                 placeholder="Please indicate reasons for the difference and any planned date for implementation"
               ></textarea>
             </div>

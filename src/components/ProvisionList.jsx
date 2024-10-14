@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { annexes, Chapters, Provisions } from "../utils/data";
-import ticketPdf from "../assests/ticket.pdf";
+import p1 from "../assests/p2.pdf";
+import p2 from "../assests/p4.pdf";
 import PdfViewer from "./PdfViewer";
 import OpenPdf from "./OpenPdf";
 
-const ProvisionList = ({ type }) => {
+const ProvisionList = ({ type, selectedAnnexes, setSelectedAnnexes }) => {
   const [arrayType, setArrayType] = useState([]);
   const [openPdf, setOpenPdf] = useState(false);
 
@@ -18,6 +19,14 @@ const ProvisionList = ({ type }) => {
     }
   }, [type]);
 
+  const handleCheckboxChange = (elem) => {
+    if (selectedAnnexes.includes(elem)) {
+      setSelectedAnnexes(selectedAnnexes.filter((item) => item !== elem));
+    } else {
+      setSelectedAnnexes([...selectedAnnexes, elem]);
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h3>Select {type}</h3>
@@ -30,10 +39,14 @@ const ProvisionList = ({ type }) => {
                   type="checkbox"
                   className="form-check-input"
                   id={`annex-${index}`}
+                  checked={selectedAnnexes.includes(elem)} // Check if it's selected
+                  onChange={() => handleCheckboxChange(elem)} // Handle checkbox change
                 />
               )}
 
-              <label className="form-check-label">{elem}</label>
+              <label className="form-check-label" htmlFor={`annex-${index}`}>
+                {elem}
+              </label>
             </div>
 
             {type === "Provision" && (

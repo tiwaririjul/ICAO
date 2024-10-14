@@ -6,21 +6,13 @@ import { ancProgresBarContents } from "../utils/data";
 
 const Progress = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedAnnexPan, setSelectedAnnexPan] = useState(null);
 
-  // Handler for next step
   const handleNext = () => {
-    if (currentStep === 1 && selectedAnnexPan === null) {
-      alert("Please select an option before proceeding to the next stage.");
-    } else {
-      // Proceed to the next step if it's not the last step
-      if (currentStep < ancProgresBarContents.length) {
-        setCurrentStep(currentStep + 1);
-      }
+    if (currentStep < ancProgresBarContents.length) {
+      setCurrentStep(currentStep + 1);
     }
   };
 
-  // Handler for previous step
   const handlePrev = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
@@ -50,11 +42,7 @@ const Progress = () => {
         ))}
       </div>
 
-      <Stages
-        stage={currentStep}
-        selectedAnnexPan={selectedAnnexPan}
-        setSelectedAnnexPan={setSelectedAnnexPan}
-      />
+      <Stages stage={currentStep} />
 
       <div className="navigation-buttons">
         <button onClick={handlePrev} disabled={currentStep === 1}>

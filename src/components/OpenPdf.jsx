@@ -1,6 +1,6 @@
 import React from "react";
 import PdfViewer from "./PdfViewer";
-import ticketPdf from "../assests/ticket.pdf";
+import p2 from "../assests/p2.pdf";
 
 const OpenPdf = ({ OpenPdf, setOpenPdf }) => {
   return (
@@ -12,7 +12,7 @@ const OpenPdf = ({ OpenPdf, setOpenPdf }) => {
               <h5 className="modal-title">PDF Viewer</h5>
             </div>
             <div className="modal-body">
-              <PdfViewer pdfUrl={ticketPdf} />
+              <PdfViewer pdfUrl={p2} />
             </div>
             <div className="modal-footer">
               <button

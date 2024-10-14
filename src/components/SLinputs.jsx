@@ -19,7 +19,7 @@ const SLinputs = () => {
       (elem) => elem.index === selectedIndex
     );
     if (selectedPdfObject) {
-      setSelectedPdf(selectedPdfObject.content); // Set the selected PDF content based on the index
+      setSelectedPdf(selectedPdfObject); // Set the selected PDF content based on the index
     }
   }, [selectedIndex]); // Dependency on selectedIndex
 

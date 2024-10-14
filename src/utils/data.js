@@ -43,63 +43,31 @@ export const ancProgresBarContents = [
   },
 ];
 
-export const progressContent = [
+export const states = [
   {
     index: 1,
-    annexOrPans: null,
+    state: "UK",
   },
   {
     index: 2,
-    selectAnnex: null,
+    state: "Aus",
   },
   {
-    index: 3,
-    uploadSlLetter: [
-      {
-        title: null,
-      },
-      {
-        language: null,
-      },
-      {
-        document: null,
-      },
-      {
-        startLetterDate: null,
-      },
-      {
-        edition: null,
-      },
-      {
-        fileUpload: null,
-      },
-    ],
-  },
-  {
-    index: 4,
-    selectChapters: null,
-  },
-
-  {
-    index: 5,
-    selectProvision: null,
-  },
-  {
-    index: 6,
-    confirm: null,
+    index: 2,
+    state: "IND",
   },
 ];
 export const pdfContent = [
   {
     index: 1.0,
-    content: require("../assests/ticket.pdf"),
+    content: require("../assests/p2.pdf"),
   },
   {
     index: 1.5,
-    content: require("../assests/ticket.pdf"),
+    content: require("../assests/p3.pdf"),
   },
   {
     index: 2.0,
-    content: require("../assests/ticket.pdf"),
+    content: require("../assests/p4.pdf"),
   },
 ];

@@ -1,54 +1,101 @@
 import React from "react";
 
-const UploadStateLetter = () => {
+const UploadStateLetter = ({ setStateLetterInfo }) => {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setStateLetterInfo((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setStateLetterInfo((prev) => ({
+      ...prev,
+      filePath: file,
+    }));
+  };
+
   return (
     <>
-      <div class="container mt-4">
-        <div class="row">
-          <div class="col-6">
-            <div class="mb-3">
-              <label for="input1" class="form-label">
+      <div className="container mt-4">
+        <div className="row">
+          <div className="col-6">
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">
                 Title
               </label>
-              <input type="text" class="form-control" id="input1" />
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                onChange={handleInputChange}
+              />
             </div>
-            <div class="mb-3">
-              <label for="document">Document</label>
-              <select class="form-control" id="document">
+
+            <div className="mb-3">
+              <label htmlFor="language">Language</label>
+              <select
+                className="form-control"
+                id="language"
+                onChange={handleInputChange}
+              >
                 <option value="1">Language</option>
-                <option value="2">French</option>
-                <option value="3">English</option>
-                <option value="4">Espanol</option>
+                <option value="French">French</option>
+                <option value="English">English</option>
+                <option value="Espanol">Espanol</option>
               </select>
             </div>
 
-            <div class="mb-3">
-              <label for="input3" class="form-label">
+            <div className="mb-3">
+              <label htmlFor="edition" className="form-label">
                 Edition
               </label>
-              <input type="text" class="form-control" id="input3" />
+              <input
+                type="text"
+                className="form-control"
+                id="edition"
+                onChange={handleInputChange}
+              />
             </div>
           </div>
-          <div class="col-6">
-            <div class="mb-3">
-              <label for="document">Document</label>
-              <select class="form-control" id="document">
+
+          <div className="col-6">
+            <div className="mb-3">
+              <label htmlFor="document">Document</label>
+              <select
+                className="form-control"
+                id="document"
+                onChange={handleInputChange}
+              >
                 <option value="1">version 178[178]</option>
               </select>
             </div>
 
-            <div class="mb-3">
-              <label for="input5" class="form-label">
-                State letter Date
+            <div className="mb-3">
+              <label htmlFor="stateLetterUploadDate" className="form-label">
+                State Letter Date
               </label>
-              <input type="date" class="form-control" id="input5" />
+              <input
+                type="date"
+                className="form-control"
+                id="stateLetterUploadDate"
+                onChange={handleInputChange}
+              />
             </div>
           </div>
-          <div class="mb-3 col-md-4">
-            <label for="input6" class="form-label">
+
+          <div className="mb-3 col-md-4">
+            <label htmlFor="filePath" className="form-label">
               Upload file
             </label>
-            <input type="file" class="form-control" id="input6" />
+            <input
+              type="file"
+              className="form-control"
+              id="filePath"
+              onChange={handleFileChange}
+            />
           </div>
         </div>
       </div>
