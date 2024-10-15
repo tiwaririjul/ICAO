@@ -53,7 +53,7 @@ export const states = [
     state: "Aus",
   },
   {
-    index: 2,
+    index: 3,
     state: "IND",
   },
 ];

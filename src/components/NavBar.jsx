@@ -19,10 +19,6 @@ const NavBar = () => {
         className="navbar navbar-expand-lg navbar-light"
         style={{ backgroundColor: "#0054A4", padding: "20px 20px" }}
       >
-        <a className="navbar-brand text-white" href="#">
-          Navbar
-        </a>
-
         <button
           className="navbar-toggler"
           type="button"
@@ -37,26 +33,49 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link text-white" href="#">
-                Home <span className="sr-only">(current)</span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#">
-                Link
-              </a>
+              {/* <a className="nav-link text-white" href="#">
+                State Letter Viewer
+              </a> */}
+
+              <Link className="nav-link text-white" to="/stateletter/state">
+                State Letter Viewer
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle text-white"
                 href="#"
-                id="navbarDropdown"
+                id="navbarDropdown1"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
                 State Letter
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/parser">
+                  State letter parser
+                </Link>
+                <Link className="dropdown-item" to="/stateletter/state">
+                  State Letter Viewer
+                </Link>
+                <Link className="dropdown-item" to="/stateletter/anc">
+                  Review by ANC
+                </Link>
+              </div>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle text-white"
+                href="#"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                States
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="/stateletter/state">
@@ -67,6 +86,27 @@ const NavBar = () => {
                 </Link>
                 <Link className="dropdown-item" to="/stateletter/anc">
                   Review by ANC
+                </Link>
+              </div>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle text-white"
+                href="#"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                States Letter Analysis
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/stateletter/secretriat">
+                  Secretariat Analysis
+                </Link>
+                <Link className="dropdown-item" to="/stateletter/anc">
+                  Final Review by ANC
                 </Link>
               </div>
             </li>
