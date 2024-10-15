@@ -97,6 +97,7 @@ const SLinputs = () => {
             <i className="fas fa-angle-double-right"></i>
           </button>
         </div>
+        <div></div>
       </div>
 
       {/* Render the SLComment component and pass the selectedPdf content */}
