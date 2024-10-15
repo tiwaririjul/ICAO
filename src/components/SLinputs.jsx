@@ -1,31 +1,74 @@
 import React, { useState, useEffect } from "react";
 import SLComment from "./SLcomment";
-import { pdfContent } from "../utils/data";
+import { useParams } from "react-router-dom";
+import SLtrack from "./SLtrack";
+import { annexData } from "../utils/data";
+
+// Sample annex data structure
 
 const SLinputs = () => {
-  // Initialize state with the first PDF in the array
-  const [selectedPdf, setSelectedPdf] = useState(pdfContent[0].content);
-  const [selectedIndex, setSelectedIndex] = useState(pdfContent[0].index);
+  const { type } = useParams();
 
-  // Function to handle dropdown change
-  const handlePdfChange = (event) => {
-    const selectedIndex = parseFloat(event.target.value);
-    setSelectedIndex(selectedIndex); // Update the selected index
+  const [selectedAnnexId, setSelectedAnnexId] = useState(annexData[0].annexId);
+  const [selectedChapterId, setSelectedChapterId] = useState(
+    annexData[0].chapters[0].chapterId
+  );
+  const [selectedProvision, setSelectedProvision] = useState(
+    annexData[0].chapters[0].provisions[0]
+  );
+
+  const [stateComment, setStateComment] = useState();
+
+  const handleAnnexChange = (event) => {
+    const annexId = parseInt(event.target.value);
+    setSelectedAnnexId(annexId);
+    const firstChapter = annexData.find((annex) => annex.annexId === annexId)
+      .chapters[0];
+    setSelectedChapterId(firstChapter.chapterId);
+    setSelectedProvision(firstChapter.provisions[0]);
   };
 
-  // useEffect to re-render the component when selectedIndex changes
-  useEffect(() => {
-    const selectedPdfObject = pdfContent.find(
-      (elem) => elem.index === selectedIndex
+  const handleChapterChange = (event) => {
+    const chapterId = parseInt(event.target.value);
+    setSelectedChapterId(chapterId);
+    const selectedChapter = annexData
+      .find((annex) => annex.annexId === selectedAnnexId)
+      .chapters.find((chapter) => chapter.chapterId === chapterId);
+    setSelectedProvision(selectedChapter.provisions[0]);
+  };
+
+  const handleProvisionChange = (event) => {
+    const provisionId = parseInt(event.target.value);
+    const selectedChapter = annexData
+      .find((annex) => annex.annexId === selectedAnnexId)
+      .chapters.find((chapter) => chapter.chapterId === selectedChapterId);
+    const selectedProvision = selectedChapter.provisions.find(
+      (provision) => provision.provisionId === provisionId
     );
-    if (selectedPdfObject) {
-      setSelectedPdf(selectedPdfObject); // Set the selected PDF content based on the index
-    }
-  }, [selectedIndex]); // Dependency on selectedIndex
+    setSelectedProvision(selectedProvision);
+  };
+
+  const handlePdfChange = (event) => {
+    const selectedProvisionId = parseInt(event.target.value);
+    const selectedChapter = annexData
+      .find((annex) => annex.annexId === selectedAnnexId)
+      .chapters.find((chapter) => chapter.chapterId === selectedChapterId);
+    const selectedProvision = selectedChapter.provisions.find(
+      (provision) => provision.provisionId === selectedProvisionId
+    );
+    setSelectedProvision(selectedProvision);
+  };
+
+  useEffect(() => {
+    const selectedChapter = annexData
+      .find((annex) => annex.annexId === selectedAnnexId)
+      .chapters.find((chapter) => chapter.chapterId === selectedChapterId);
+    setSelectedProvision(selectedChapter.provisions[0]);
+  }, [selectedChapterId, selectedAnnexId]);
 
   return (
     <>
-      <div>
+      <div style={{ marginTop: "50px" }}>
         <div className="container">
           <div className="row">
             <div className="col-md-3">
@@ -35,72 +78,148 @@ const SLinputs = () => {
               </select>
             </div>
             <div className="col-md-3">
-              <label htmlFor="document">Document</label>
-              <select className="form-control" id="document">
-                <option value="1">Annex 1 - PERSONNEL LICENSING</option>
-                <option value="2">Annex 2 - PERSONNEL LICENSING</option>
-                <option value="3">Annex 3 - PERSONNEL LICENSING</option>
-                <option value="4">Annex 4 - PERSONNEL LICENSING</option>
-                <option value="5">Annex 5 - PERSONNEL LICENSING</option>
-                <option value="6">Annex 6 - PERSONNEL LICENSING</option>
+              <label htmlFor="document">Annex</label>
+              <select
+                className="form-control"
+                id="document"
+                onChange={handleAnnexChange}
+              >
+                {annexData.map((annex) => (
+                  <option key={annex.annexId} value={annex.annexId}>
+                    {annex.annexName}
+                  </option>
+                ))}
               </select>
             </div>
-            <div className="col-md-3">
-              <label htmlFor="documentVersion">Document Version</label>
-              <select className="form-control" id="documentVersion">
-                <option value="amendment178[178]">Amendment 178 [178]</option>
-              </select>
-            </div>
-            <div className="col-md-3">
-              <label htmlFor="documentSection">Document Section</label>
-              <select className="form-control" id="documentSection">
-                <option value="abbreviations">ABBREVIATIONS</option>
-              </select>
-            </div>
-          </div>
 
-          <div className="row mt-3">
+            {/* Chapter dropdown */}
             <div className="col-md-3">
-              <label htmlFor="status">Status</label>
-              <select className="form-control" id="status">
-                <option value="allstatus">--- All Status ---</option>
+              <label htmlFor="documentVersion">Chapter</label>
+              <select
+                className="form-control"
+                id="documentVersion"
+                onChange={handleChapterChange}
+              >
+                {annexData
+                  .find((annex) => annex.annexId === selectedAnnexId)
+                  .chapters.map((chapter) => (
+                    <option key={chapter.chapterId} value={chapter.chapterId}>
+                      {chapter.chapterName}
+                    </option>
+                  ))}
               </select>
+            </div>
+
+            {/* Provision dropdown */}
+            <div className="col-md-3">
+              <label htmlFor="documentSection">Provision</label>
+              <select
+                className="form-control"
+                id="documentSection"
+                onChange={handleProvisionChange}
+              >
+                {annexData
+                  .find((annex) => annex.annexId === selectedAnnexId)
+                  .chapters.find(
+                    (chapter) => chapter.chapterId === selectedChapterId
+                  )
+                  .provisions.map((provision) => (
+                    <option
+                      key={provision.provisionId}
+                      value={provision.provisionId}
+                    >
+                      {provision.provisionName}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            {/* <div className="col-md-3">
+              <label htmlFor="status">Provision ID</label>
+              <select
+                className="btn btn-light"
+                id="status"
+                onChange={handlePdfChange} // Handle change on dropdown selection
+              >
+                llll
+              </select>
+            </div> */}
+
+            <div className="col-md-6 offset-md-4 d-flex justify-content-around mt-5">
+              <div className="btn-group">
+                <button className="btn btn-light">
+                  <i className="fas fa-angle-double-left"></i>
+                </button>
+                <button className="btn btn-light">
+                  <i className="fas fa-angle-left"></i>
+                </button>
+                <select
+                  className="btn btn-light"
+                  id="status"
+                  onChange={handlePdfChange} // Handle change on dropdown selection
+                >
+                  {annexData
+                    .find((annex) => annex.annexId === selectedAnnexId)
+                    .chapters.find(
+                      (chapter) => chapter.chapterId === selectedChapterId
+                    )
+                    .provisions.map((provision) => (
+                      <option
+                        key={provision.provisionId}
+                        value={provision.provisionId}
+                      >
+                        {provision.provisionId}
+                      </option>
+                    ))}
+                </select>
+
+                <button className="btn btn-light">
+                  <i className="fas fa-angle-right"></i>
+                </button>
+                <button className="btn btn-light">
+                  <i className="fas fa-angle-double-right"></i>
+                </button>
+              </div>
+              <div></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="col-md-6 offset-md-4 d-flex justify-content-around">
-        <div className="btn-group">
-          <button className="btn btn-light">
-            <i className="fas fa-angle-double-left"></i>
-          </button>
-          <button className="btn btn-light">
-            <i className="fas fa-angle-left"></i>
-          </button>
-          <select
-            className="btn btn-light"
-            id="status"
-            onChange={handlePdfChange} // Handle change on dropdown selection
-          >
-            {pdfContent.map((elem) => (
-              <option key={elem.index} value={elem.index}>
-                {elem.index}
-              </option>
-            ))}
-          </select>
+      {/* {annexData
+                  .find((annex) => annex.annexId === selectedAnnexId)
+                  .chapters.find(
+                    (chapter) => chapter.chapterId === selectedChapterId
+                  )
+                  .provisions.map((provision) => (
+                    <option
+                      key={provision.provisionId}
+                      value={provision.provisionId}
+                    >
+                      {provision.provisionId}
+                    </option>
+                  ))} */}
 
-          <button className="btn btn-light">
-            <i className="fas fa-angle-right"></i>
-          </button>
-          <button className="btn btn-light">
-            <i className="fas fa-angle-double-right"></i>
-          </button>
+      {/* PDF viewer or content display */}
+      {/* <div style={{ margin: "20px" }}>
+        <h5>Selected Provision PDF Path: {selectedProvision.pdfPath}</h5>
+      </div> */}
+
+      {/* Show comments and track based on provision */}
+      {type === "secretriat" && (
+        <div style={{ margin: "70px 50px" }}>
+          <SLtrack />
         </div>
-      </div>
+      )}
 
-      {/* Render the SLComment component and pass the selectedPdf content */}
-      <SLComment selectedPdf={selectedPdf} />
+      {console.log(selectedProvision)}
+
+      {/* Render SLComment component and pass the selected provision */}
+      <SLComment
+        selectedPdf={selectedProvision}
+        selectedAnnexId={selectedAnnexId}
+        selectedChapterId={selectedChapterId}
+        selectedProvision={selectedProvision}
+      />
     </>
   );
 };

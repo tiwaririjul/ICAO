@@ -2,16 +2,9 @@ import React, { useState, useEffect } from "react";
 
 // Sample data for states
 const states = [
-  { name: "Maharashtra", pending: 12, status: "Pending", progress: 25 },
-  { name: "Gujarat", pending: 5, status: "Partially Completed", progress: 65 },
-  { name: "Delhi", pending: 0, status: "Completed", progress: 100 },
-  { name: "Karnataka", pending: 9, status: "Pending", progress: 15 },
-  {
-    name: "Tamil Nadu",
-    pending: 2,
-    status: "Partially Completed",
-    progress: 75,
-  },
+  { name: "India", pending: 12, status: "Pending", progress: 25 },
+  { name: "Canada", pending: 5, status: "Partially Completed", progress: 65 },
+  { name: "Australia", pending: 0, status: "Completed", progress: 100 },
 ];
 
 // Function to render buttons based on status
@@ -53,7 +46,7 @@ const StateRow = ({ name, pending, status, progress }) => (
 );
 
 // Main table component
-const   SLtrack = () => {
+const SLtrack = () => {
   const [detail, setDetail] = useState({});
 
   useEffect(() => {

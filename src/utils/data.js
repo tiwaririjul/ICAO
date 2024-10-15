@@ -57,17 +57,76 @@ export const states = [
     state: "IND",
   },
 ];
-export const pdfContent = [
+
+export const annexData = [
   {
-    index: 1.0,
-    content: require("../assests/p2.pdf"),
+    annexId: 1,
+    annexName: "Annex 1 - PERSONNEL LICENSING",
+    chapters: [
+      {
+        chapterId: 1,
+        chapterName: "Chapter 1",
+        provisions: [
+          {
+            provisionId: 1,
+            provisionName: "Provision 1.1",
+            pdfPath: require("../assests/p2.pdf"),
+          },
+          {
+            provisionId: 2,
+            provisionName: "Provision 1.2",
+            pdfPath: require("../assests/p3.pdf"),
+          },
+        ],
+      },
+      {
+        chapterId: 2,
+        chapterName: "Chapter 2",
+        provisions: [
+          {
+            provisionId: 3,
+            provisionName: "Provision 2.1",
+            pdfPath: require("../assests/ticket.pdf"),
+          },
+          {
+            provisionId: 4,
+            provisionName: "Provision 2.2",
+            pdfPath: require("../assests/p4.pdf"),
+          },
+          {
+            provisionId: 5,
+            provisionName: "Provision 2.3",
+            pdfPath: require("../assests/p2.pdf"),
+          },
+        ],
+      },
+    ],
   },
   {
-    index: 1.5,
-    content: require("../assests/p3.pdf"),
-  },
-  {
-    index: 2.0,
-    content: require("../assests/p4.pdf"),
+    annexId: 2,
+    annexName: "Annex 2 - OPERATIONAL STANDARDS",
+    chapters: [
+      {
+        chapterId: 1,
+        chapterName: "Chapter 1",
+        provisions: [
+          {
+            provisionId: 6,
+            provisionName: "Provision 1.1",
+            pdfPath: require("../assests/p3.pdf"),
+          },
+          {
+            provisionId: 7,
+            provisionName: "Provision 1.2",
+            pdfPath: require("../assests/ticket.pdf"),
+          },
+          {
+            provisionId: 8,
+            provisionName: "Provision 1.3",
+            pdfPath: require("../assests/p4.pdf"),
+          },
+        ],
+      },
+    ],
   },
 ];

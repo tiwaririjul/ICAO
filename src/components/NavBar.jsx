@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../assests/icao-logo.svg";
+import { Link } from "react-router-dom";
+
 const NavBar = () => {
   return (
     <div>
@@ -58,7 +60,7 @@ const NavBar = () => {
                 class="dropdown-menu text-white"
                 aria-labelledby="navbarDropdown"
               >
-                <a class="dropdown-item" href="#">
+                {/* <a class="dropdown-item" href="#">
                   State Letter viewer
                 </a>
                 <a class="dropdown-item" href="#">
@@ -67,7 +69,17 @@ const NavBar = () => {
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
                   Something else here
-                </a>
+                </a> */}
+
+                <Link class="dropdown-item" to="/stateletter/state">
+                  State Letter View
+                </Link>
+                <Link class="dropdown-item" to="/stateletter/secretriat">
+                  Secretiary Ananlysis
+                </Link>
+                <Link class="dropdown-item" to="/stateletter/anc">
+                  Review by anc
+                </Link>
               </div>
             </li>
           </ul>
