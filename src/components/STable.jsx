@@ -8,6 +8,7 @@ const STable = () => {
           <tr>
             <th scope="col">State Name</th>
             <th scope="col">Compliance Options</th>
+            <th scope="col">State Reference</th>
             <th scope="col">Details of Difference</th>
             <th scope="col">Remarks</th>
           </tr>
@@ -17,24 +18,28 @@ const STable = () => {
             <td>India</td>
             <td>Otto</td>
             <td>@mdo</td>
+            <td>st</td>
             <td>@mdo</td>
           </tr>
           <tr>
             <td>Canada</td>
             <td>Thornton</td>
             <td>@fat</td>
+            <td>st</td>
             <td>@mdo</td>
           </tr>
           <tr>
             <td>America</td>
             <td>Thornton</td>
             <td>@fat</td>
+            <td>st</td>
             <td>@mdo</td>
           </tr>
           <tr>
             <td>Japan</td>
             <td>Thornton</td>
             <td>@fat</td>
+            <td>st</td>
             <td>@mdo</td>
           </tr>
         </tbody>

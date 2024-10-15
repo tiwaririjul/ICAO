@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import PdfViewer from "./PdfViewer";
 import { states } from "../utils/data";
 
-const SLComment = ({ selectedPdf }) => {
+const SLComment = ({
+  selectedPdf,
+  selectedAnnexId,
+  selectedChapterId,
+  selectedProvision,
+}) => {
   const [detail, setDetail] = useState({});
   const [selectedState, setSelectedState] = useState("");
   const [comments, setComments] = useState({
@@ -27,8 +32,8 @@ const SLComment = ({ selectedPdf }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const index = selectedPdf.index;
-    const pdfContent = String(selectedPdf.content);
+    const index = selectedPdf.provisionId;
+    const pdfContent = String(selectedPdf.pdfPath);
 
     const detailsToStore = {
       state: {
@@ -69,7 +74,7 @@ const SLComment = ({ selectedPdf }) => {
         {/* PdfViewer Column */}
         <div className="col-md-6 mb-4">
           <div className="pdf-container border rounded p-3">
-            <PdfViewer pdfUrl={String(selectedPdf.content)} />
+            <PdfViewer pdfUrl={String(selectedPdf.pdfPath)} />
           </div>
         </div>
 

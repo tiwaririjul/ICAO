@@ -6,7 +6,7 @@ import SLinputs from "./components/SLinputs";
 import { Worker } from "@react-pdf-viewer/core";
 import { Viewer } from "@react-pdf-viewer/core";
 import ticketPdf from "./assests/SL.2024.31.en.pdf";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Import the styles
 import "@react-pdf-viewer/core/lib/styles/index.css";
@@ -23,9 +23,9 @@ function App() {
         <Router>
           <NavBar />
           <Routes>
-            <Route path="/progress" element={<Progress />} />
-            <Route path="/stateletter" element={<SLinputs />} />
-            <Route path="/track" element={<STable />} />
+            <Route path="/stateletter/:type" element={<SLinputs />} />
+            <Route path="/parser" element={<Progress />} />
+            <Route path="/track" element={<SLtrack />} />
           </Routes>
         </Router>
         {/* <SLComment /> */}
