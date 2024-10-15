@@ -7,6 +7,7 @@ const SLComment = ({
   selectedAnnexId,
   selectedChapterId,
   selectedProvision,
+  userType,
 }) => {
   const [detail, setDetail] = useState({});
   const [selectedState, setSelectedState] = useState("");
@@ -36,12 +37,17 @@ const SLComment = ({
     const pdfContent = String(selectedPdf.pdfPath);
 
     const detailsToStore = {
-      state: {
-        state: selectedState,
-        pdfContent: pdfContent,
-        comments: comments,
-        provisionNo: index,
-      },
+      // state: selectedState,
+      // pdfContent: pdfContent,
+      // comments: comments,
+      // provisionNo: index,
+      state: selectedState,
+      pdfIndex: pdfContent,
+      comments: comments,
+      provisionNo: index,
+      annexId: selectedAnnexId,
+      chapterId: selectedChapterId,
+      provisionId: selectedProvision,
     };
 
     setDetail((prevDetails) => ({
@@ -49,7 +55,10 @@ const SLComment = ({
       [index]: detailsToStore.state,
     }));
 
-    localStorage.setItem(selectedState, JSON.stringify(detail));
+    localStorage.setItem(
+      `${selectedState}'s'${index}`,
+      JSON.stringify(detailsToStore)
+    );
 
     setSelectedState("");
     setComments({
@@ -97,84 +106,130 @@ const SLComment = ({
 
           <form onSubmit={handleSubmit}>
             {/* Radio Buttons for Compliance */}
-            <div className="mb-3">
-              <label className="form-label fw-bold">Compliance Options</label>
-              {[
-                "noDifference",
-                "significantDifference",
-                "optionA",
-                "optionB",
-                "optionC",
-                "notApplicable",
-              ].map((option) => (
-                <div className="form-check" key={option}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="compliance"
-                    id={option}
-                    value={option}
-                    onChange={handleInputChange}
-                  />
-                  <label className="form-check-label" htmlFor={option}>
-                    {option}
+
+            {userType == "state" && (
+              <>
+                <div className="mb-3">
+                  <label className="form-label fw-bold">
+                    Compliance Options
                   </label>
+                  {[
+                    "noDifference",
+                    "significantDifference",
+                    "optionA",
+                    "optionB",
+                    "optionC",
+                    "notApplicable",
+                  ].map((option) => (
+                    <div className="form-check" key={option}>
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="compliance"
+                        id={option}
+                        value={option}
+                        onChange={handleInputChange}
+                      />
+                      <label className="form-check-label" htmlFor={option}>
+                        {option}
+                      </label>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            {/* State Reference Text Area */}
-            <div className="mb-3">
-              <label htmlFor="stateReference" className="form-label">
-                State Reference
-              </label>
-              <textarea
-                className="form-control"
-                id="stateReference"
-                name="stateReference"
-                rows="2"
-                value={comments.stateReference}
-                onChange={handleInputChange}
-                placeholder="Enter state reference here"
-              ></textarea>
-            </div>
+                {/* State Reference Text Area */}
+                <div className="mb-3">
+                  <label htmlFor="stateReference" className="form-label">
+                    State Reference
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="stateReference"
+                    name="stateReference"
+                    rows="2"
+                    value={comments.stateReference}
+                    onChange={handleInputChange}
+                    placeholder="Enter state reference here"
+                  ></textarea>
+                </div>
 
-            {/* Details of Difference Text Area */}
-            <div className="mb-3">
-              <label htmlFor="detailsOfDifference" className="form-label">
-                Details of Difference
-              </label>
-              <textarea
-                className="form-control"
-                id="detailsOfDifference"
-                name="detailsOfDifference"
-                rows="2"
-                value={comments.detailsOfDifference}
-                onChange={handleInputChange}
-                placeholder="Please describe the difference clearly and concisely"
-              ></textarea>
-            </div>
+                {/* Details of Difference Text Area */}
+                <div className="mb-3">
+                  <label htmlFor="detailsOfDifference" className="form-label">
+                    Details of Difference
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="detailsOfDifference"
+                    name="detailsOfDifference"
+                    rows="2"
+                    value={comments.detailsOfDifference}
+                    onChange={handleInputChange}
+                    placeholder="Please describe the difference clearly and concisely"
+                  ></textarea>
+                </div>
 
-            {/* Remarks Text Area */}
-            <div className="mb-3">
-              <label htmlFor="remarks" className="form-label">
-                Remarks
-              </label>
-              <textarea
-                className="form-control"
-                id="remarks"
-                name="remarks"
-                rows="2"
-                value={comments.remarks}
-                onChange={handleInputChange}
-                placeholder="Please indicate reasons for the difference and any planned date for implementation"
-              ></textarea>
-            </div>
+                {/* Remarks Text Area */}
+                <div className="mb-3">
+                  <label htmlFor="remarks" className="form-label">
+                    Remarks
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="remarks"
+                    name="remarks"
+                    rows="2"
+                    value={comments.remarks}
+                    onChange={handleInputChange}
+                    placeholder="Please indicate reasons for the difference and any planned date for implementation"
+                  ></textarea>
+                </div>
 
-            {/* Save Button */}
-            <button type="submit" className="btn btn-primary w-100">
-              SAVE ENTRY
-            </button>
+                {/* Save Button */}
+                <button type="submit" className="btn btn-primary w-100">
+                  SAVE ENTRY
+                </button>
+              </>
+            )}
+
+            {(userType === "secretriat" || userType === "anc") && (
+              <>
+                <div className="mb-3">
+                  <label htmlFor="detailsOfDifference" className="form-label">
+                    Write your comment
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="detailsOfDifference"
+                    name="detailsOfDifference"
+                    rows="2"
+                    value={comments.detailsOfDifference}
+                    onChange={handleInputChange}
+                    placeholder="Please describe the difference clearly and concisely"
+                  ></textarea>
+                </div>
+
+                {/* Remarks Text Area */}
+                <div className="mb-3">
+                  <label htmlFor="remarks" className="form-label">
+                    Remarks
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="remarks"
+                    name="remarks"
+                    rows="2"
+                    value={comments.remarks}
+                    onChange={handleInputChange}
+                    placeholder="Please indicate reasons for the difference and any planned date for implementation"
+                  ></textarea>
+                </div>
+
+                <button type="submit" className="btn btn-primary w-100">
+                  SAVE ENTRY
+                </button>
+              </>
+            )}
           </form>
         </div>
       </div>

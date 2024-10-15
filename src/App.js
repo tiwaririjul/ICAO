@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import SLComment from "./components/SLcomment";
 import SLtrack from "./components/SLtrack";
+import STable from "./components/STable";
 
 function App() {
   // const pdfUrl = "./assests/ticket.pdf";

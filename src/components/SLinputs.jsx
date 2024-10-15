@@ -3,6 +3,7 @@ import SLComment from "./SLcomment";
 import { useParams } from "react-router-dom";
 import SLtrack from "./SLtrack";
 import { annexData } from "../utils/data";
+import STable from "./STable";
 
 // Sample annex data structure
 
@@ -184,30 +185,10 @@ const SLinputs = () => {
           </div>
         </div>
       </div>
-
-      {/* {annexData
-                  .find((annex) => annex.annexId === selectedAnnexId)
-                  .chapters.find(
-                    (chapter) => chapter.chapterId === selectedChapterId
-                  )
-                  .provisions.map((provision) => (
-                    <option
-                      key={provision.provisionId}
-                      value={provision.provisionId}
-                    >
-                      {provision.provisionId}
-                    </option>
-                  ))} */}
-
-      {/* PDF viewer or content display */}
-      {/* <div style={{ margin: "20px" }}>
-        <h5>Selected Provision PDF Path: {selectedProvision.pdfPath}</h5>
-      </div> */}
-
       {/* Show comments and track based on provision */}
       {type === "secretriat" && (
         <div style={{ margin: "70px 50px" }}>
-          <SLtrack />
+          <STable />
         </div>
       )}
 
@@ -219,6 +200,7 @@ const SLinputs = () => {
         selectedAnnexId={selectedAnnexId}
         selectedChapterId={selectedChapterId}
         selectedProvision={selectedProvision}
+        userType={type}
       />
     </>
   );
