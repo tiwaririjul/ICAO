@@ -75,17 +75,11 @@ const NavBar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                State Letter
+                States
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="/stateletter/state">
-                  State Letter View
-                </Link>
-                <Link className="dropdown-item" to="/stateletter/secretriat">
-                  Secretariat Analysis
-                </Link>
-                <Link className="dropdown-item" to="/stateletter/anc">
-                  Review by ANC
+                  SL Comments By States
                 </Link>
               </div>
             </li>
@@ -99,7 +93,7 @@ const NavBar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                State Letter
+                State Letter Analysis
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="/stateletter/secretriat">
