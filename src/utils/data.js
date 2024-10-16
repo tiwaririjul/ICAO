@@ -107,23 +107,70 @@ export const annexData = [
     annexName: "Annex 2 - OPERATIONAL STANDARDS",
     chapters: [
       {
-        chapterId: 1,
-        chapterName: "Chapter 1",
+        chapterId: 3,
+        chapterName: "Chapter 3",
         provisions: [
           {
             provisionId: 6,
-            provisionName: "Provision 1.1",
+            provisionName: "Provision 3.1",
             pdfPath: require("../assests/p3.pdf"),
           },
           {
             provisionId: 7,
-            provisionName: "Provision 1.2",
+            provisionName: "Provision 3.2",
             pdfPath: require("../assests/ticket.pdf"),
           },
           {
             provisionId: 8,
-            provisionName: "Provision 1.3",
+            provisionName: "Provision 3.3",
             pdfPath: require("../assests/p4.pdf"),
+          },
+        ],
+      },
+      {
+        chapterId: 4,
+        chapterName: "Chapter 4",
+        provisions: [
+          {
+            provisionId: 9,
+            provisionName: "Provision 4.1",
+            pdfPath: require("../assests/p3.pdf"),
+          },
+          {
+            provisionId: 10,
+            provisionName: "Provision 4.2",
+            pdfPath: require("../assests/ticket.pdf"),
+          },
+          {
+            provisionId: 11,
+            provisionName: "Provision 4.3",
+            pdfPath: require("../assests/p4.pdf"),
+          },
+        ],
+      },
+      {
+        chapterId: 5,
+        chapterName: "Chapter 5",
+        provisions: [
+          {
+            provisionId: 12,
+            provisionName: "Provision 5.1",
+            pdfPath: require("../assests/p3.pdf"),
+          },
+          {
+            provisionId: 13,
+            provisionName: "Provision 5.2",
+            pdfPath: require("../assests/ticket.pdf"),
+          },
+          {
+            provisionId: 14,
+            provisionName: "Provision 5.3",
+            pdfPath: require("../assests/p4.pdf"),
+          },
+          {
+            provisionId: 15,
+            provisionName: "Provision 5.4",
+            pdfPath: require("../assests/ticket.pdf"),
           },
         ],
       },

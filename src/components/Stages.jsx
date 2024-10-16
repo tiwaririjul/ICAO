@@ -4,6 +4,7 @@ import ProvisionList from "./ProvisionList";
 
 import SelectAnnexes from "./stages/SelectAnnexes";
 import UploadStateLetter from "./stages/UploadStateLetter";
+import Confirm from "./stages/Confirm";
 
 const Stages = ({ stage }) => {
   // const [progressDetail, setProgressDetail] = useState({});
@@ -96,6 +97,9 @@ const Stages = ({ stage }) => {
 
     case 5:
       return <ProvisionList type="Provision" />;
+
+    case 6:
+      return <Confirm />;
 
     default:
       return (

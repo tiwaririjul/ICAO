@@ -37,7 +37,7 @@ const NavBar = () => {
                 State Letter Viewer
               </a> */}
 
-              <Link className="nav-link text-white" to="/stateletter/state">
+              <Link className="nav-link text-white" to="/stateletter/slview">
                 State Letter Viewer
               </Link>
             </li>
@@ -57,11 +57,11 @@ const NavBar = () => {
                 <Link className="dropdown-item" to="/parser">
                   State letter parser
                 </Link>
-                <Link className="dropdown-item" to="/stateletter/state">
+                <Link className="dropdown-item" to="/stateletter/slview">
                   State Letter Viewer
                 </Link>
                 <Link className="dropdown-item" to="/stateletter/anc">
-                  Review by ANC
+                  State letter tracking
                 </Link>
               </div>
             </li>
