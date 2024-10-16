@@ -5,11 +5,10 @@ import SLtrack from "./SLtrack";
 import { annexData } from "../utils/data";
 import STable from "./STable";
 
-// Sample annex data structure
-
 const SLinputs = () => {
   const { type } = useParams();
-
+  const [daysLeft, setDaysLeft] = useState(null);
+  const [stateLetterUploadDate, setStateLetterUploadDate] = useState(null);
   const [selectedAnnexId, setSelectedAnnexId] = useState(annexData[0].annexId);
   const [selectedChapterId, setSelectedChapterId] = useState(
     annexData[0].chapters[0].chapterId
@@ -17,8 +16,7 @@ const SLinputs = () => {
   const [selectedProvision, setSelectedProvision] = useState(
     annexData[0].chapters[0].provisions[0]
   );
-
-  const [stateComment, setStateComment] = useState();
+  const [provisionIndex, setProvisionIndex] = useState(0);
 
   const handleAnnexChange = (event) => {
     const annexId = parseInt(event.target.value);
@@ -27,6 +25,7 @@ const SLinputs = () => {
       .chapters[0];
     setSelectedChapterId(firstChapter.chapterId);
     setSelectedProvision(firstChapter.provisions[0]);
+    setProvisionIndex(0);
   };
 
   const handleChapterChange = (event) => {
@@ -36,6 +35,7 @@ const SLinputs = () => {
       .find((annex) => annex.annexId === selectedAnnexId)
       .chapters.find((chapter) => chapter.chapterId === chapterId);
     setSelectedProvision(selectedChapter.provisions[0]);
+    setProvisionIndex(0);
   };
 
   const handleProvisionChange = (event) => {
@@ -47,6 +47,31 @@ const SLinputs = () => {
       (provision) => provision.provisionId === provisionId
     );
     setSelectedProvision(selectedProvision);
+    const newIndex = selectedChapter.provisions.findIndex(
+      (provision) => provision.provisionId === provisionId
+    );
+    setProvisionIndex(newIndex);
+  };
+
+  const handleArrowClick = (direction) => {
+    const selectedChapter = annexData
+      .find((annex) => annex.annexId === selectedAnnexId)
+      .chapters.find((chapter) => chapter.chapterId === selectedChapterId);
+    const provisions = selectedChapter.provisions;
+
+    let newIndex = provisionIndex;
+
+    if (direction === "left" && provisionIndex > 0) {
+      newIndex = provisionIndex - 1;
+    } else if (
+      direction === "right" &&
+      provisionIndex < provisions.length - 1
+    ) {
+      newIndex = provisionIndex + 1;
+    }
+
+    setProvisionIndex(newIndex);
+    setSelectedProvision(provisions[newIndex]);
   };
 
   const handlePdfChange = (event) => {
@@ -58,6 +83,7 @@ const SLinputs = () => {
       (provision) => provision.provisionId === selectedProvisionId
     );
     setSelectedProvision(selectedProvision);
+    setProvisionIndex(0);
   };
 
   useEffect(() => {
@@ -66,6 +92,33 @@ const SLinputs = () => {
       .chapters.find((chapter) => chapter.chapterId === selectedChapterId);
     setSelectedProvision(selectedChapter.provisions[0]);
   }, [selectedChapterId, selectedAnnexId]);
+
+  const fetchProgressData = () => {
+    const progressData = JSON.parse(localStorage.getItem("progressData"));
+    if (progressData && progressData.stateLetterInfo) {
+      setStateLetterUploadDate(
+        progressData.stateLetterInfo.stateLetterUploadDate
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (stateLetterUploadDate) {
+      const uploadDate = new Date(stateLetterUploadDate);
+      const dueDate = new Date(uploadDate);
+      dueDate.setDate(uploadDate.getDate() + 90);
+
+      const currentDate = new Date();
+      const timeDifference = dueDate - currentDate;
+      const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+      setDaysLeft(daysRemaining);
+    }
+  }, [stateLetterUploadDate]);
+
+  useEffect(() => {
+    fetchProgressData();
+  }, []);
 
   return (
     <>
@@ -93,7 +146,6 @@ const SLinputs = () => {
               </select>
             </div>
 
-            {/* Chapter dropdown */}
             <div className="col-md-3">
               <label htmlFor="documentVersion">Chapter</label>
               <select
@@ -110,8 +162,6 @@ const SLinputs = () => {
                   ))}
               </select>
             </div>
-
-            {/* Provision dropdown */}
             <div className="col-md-3">
               <label htmlFor="documentSection">Provision</label>
               <select
@@ -134,29 +184,44 @@ const SLinputs = () => {
                   ))}
               </select>
             </div>
-            {/* <div className="col-md-3">
-              <label htmlFor="status">Provision ID</label>
-              <select
-                className="btn btn-light"
-                id="status"
-                onChange={handlePdfChange} // Handle change on dropdown selection
-              >
-                llll
-              </select>
-            </div> */}
+
+            {type !== "secretriat" && type != "anc" && (
+              <div className="col-md-12 d-flex justify-content-end">
+                <div
+                  style={{
+                    backgroundColor: "#ffefc1",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    color: "#d9534f",
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                    marginTop: "20px",
+                  }}
+                >
+                  Days Left: {daysLeft !== null ? daysLeft : "Calculating..."}
+                </div>
+              </div>
+            )}
 
             <div className="col-md-6 offset-md-4 d-flex justify-content-around mt-5">
               <div className="btn-group">
-                <button className="btn btn-light">
+                <button
+                  className="btn btn-light"
+                  onClick={() => handleArrowClick("left")}
+                >
                   <i className="fas fa-angle-double-left"></i>
                 </button>
-                <button className="btn btn-light">
+                <button
+                  className="btn btn-light"
+                  onClick={() => handleArrowClick("left")}
+                >
                   <i className="fas fa-angle-left"></i>
                 </button>
                 <select
                   className="btn btn-light"
                   id="status"
-                  onChange={handlePdfChange} // Handle change on dropdown selection
+                  onChange={handlePdfChange}
                 >
                   {annexData
                     .find((annex) => annex.annexId === selectedAnnexId)
@@ -173,10 +238,16 @@ const SLinputs = () => {
                     ))}
                 </select>
 
-                <button className="btn btn-light">
+                <button
+                  className="btn btn-light"
+                  onClick={() => handleArrowClick("right")}
+                >
                   <i className="fas fa-angle-right"></i>
                 </button>
-                <button className="btn btn-light">
+                <button
+                  className="btn btn-light"
+                  onClick={() => handleArrowClick("right")}
+                >
                   <i className="fas fa-angle-double-right"></i>
                 </button>
               </div>
@@ -185,16 +256,13 @@ const SLinputs = () => {
           </div>
         </div>
       </div>
-      {/* Show comments and track based on provision */}
-      {type === "secretriat" && (
+      {type === "secretriat" && type !== "slview" && (
         <div style={{ margin: "70px 50px" }}>
-          <STable />
+          <STable provsionId={selectedProvision.provisionId} />
         </div>
       )}
 
       {console.log(selectedProvision)}
-
-      {/* Render SLComment component and pass the selected provision */}
       <SLComment
         selectedPdf={selectedProvision}
         selectedAnnexId={selectedAnnexId}

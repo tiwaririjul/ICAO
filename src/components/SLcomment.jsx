@@ -18,6 +18,15 @@ const SLComment = ({
     remarks: "",
   });
 
+  const [commentsBySecretriate, setCommentsBySecretriate] = useState({
+    comment: "",
+    remark: "",
+  });
+  const [commentsByAnc, setCommentsByAnc] = useState({
+    comment: "",
+    remark: "",
+  });
+
   const handlePdfChange = (e) => {
     setSelectedState(e.target.value);
     console.log("state selected ", e.target.value);
@@ -31,23 +40,35 @@ const SLComment = ({
     }));
   };
 
+  const handleSecretriateChange = (e) => {
+    const { name, value } = e.target;
+    setCommentsBySecretriate((prevComments) => ({
+      ...prevComments,
+      [name]: value,
+    }));
+  };
+
+  const handleAncChange = (e) => {
+    const { name, value } = e.target;
+    setCommentsByAnc((prevComment) => ({
+      ...prevComment,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const index = selectedPdf.provisionId;
     const pdfContent = String(selectedPdf.pdfPath);
 
     const detailsToStore = {
-      // state: selectedState,
-      // pdfContent: pdfContent,
-      // comments: comments,
-      // provisionNo: index,
       state: selectedState,
       pdfIndex: pdfContent,
       comments: comments,
       provisionNo: index,
       annexId: selectedAnnexId,
       chapterId: selectedChapterId,
-      provisionId: selectedProvision,
+      provisionId: selectedProvision.provisionId,
     };
 
     setDetail((prevDetails) => ({
@@ -69,44 +90,69 @@ const SLComment = ({
     });
   };
 
-  // useEffect(() => {
-  //   if (Object.keys(detail).length > 0) {
-  //     const lastIndex = Object.keys(detail).pop(); // Get the last index updated
-  //     alert(`Saved entry for state: ${detail[lastIndex].state}`);
-  //     console.log("Updated detail:", detail);
-  //   }
-  // }, [detail]);
+  const handleSecretriateInput = () => {
+    if (String(commentsBySecretriate).trim() !== "") {
+      localStorage.setItem(
+        `S${selectedProvision.provisionId}`,
+        JSON.stringify(commentsBySecretriate)
+      );
+    } else {
+      alert("Secretriate comments cannot be empty");
+    }
 
+    setCommentsBySecretriate({
+      comment: "",
+      remark: "",
+    });
+  };
+
+  const handleAncInput = () => {
+    if (String(commentsByAnc).trim() !== "") {
+      localStorage.setItem(
+        `A${selectedProvision.provisionId}`,
+        JSON.stringify(commentsByAnc)
+      );
+    } else {
+      alert("ANC comments cannot be empty");
+    }
+
+    setCommentsByAnc({
+      comment: "",
+      remark: "",
+    });
+  };
   return (
     <div className="container mt-4">
       <div className="row">
-        {/* PdfViewer Column */}
-        <div className="col-md-6 mb-4">
+        <div
+          className="col-md-6 mb-4"
+          style={userType === "slview" ? { width: "100%" } : {}}
+        >
           <div className="pdf-container border rounded p-3">
             <PdfViewer pdfUrl={String(selectedPdf.pdfPath)} />
           </div>
         </div>
 
         <div className="col-md-6">
-          <div className="d-flex justify-content-end mb-3 pe-3">
-            <select
-              className="btn btn-light"
-              id="status"
-              value={selectedState}
-              onChange={handlePdfChange}
-            >
-              <option value="">Select State</option>
-              {states.map((elem) => (
-                <option key={elem.index} value={elem.state}>
-                  {elem.state}
-                </option>
-              ))}
-            </select>
-          </div>
+          {userType !== "slview" && userType !== "anc" && (
+            <div className="d-flex justify-content-end mb-3 pe-3">
+              <select
+                className="btn btn-light"
+                id="status"
+                value={selectedState}
+                onChange={handlePdfChange}
+              >
+                <option value="">Select State</option>
+                {states.map((elem) => (
+                  <option key={elem.index} value={elem.state}>
+                    {elem.state}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit}>
-            {/* Radio Buttons for Compliance */}
-
             {userType == "state" && (
               <>
                 <div className="mb-3">
@@ -137,7 +183,6 @@ const SLComment = ({
                   ))}
                 </div>
 
-                {/* State Reference Text Area */}
                 <div className="mb-3">
                   <label htmlFor="stateReference" className="form-label">
                     State Reference
@@ -153,7 +198,6 @@ const SLComment = ({
                   ></textarea>
                 </div>
 
-                {/* Details of Difference Text Area */}
                 <div className="mb-3">
                   <label htmlFor="detailsOfDifference" className="form-label">
                     Details of Difference
@@ -169,7 +213,6 @@ const SLComment = ({
                   ></textarea>
                 </div>
 
-                {/* Remarks Text Area */}
                 <div className="mb-3">
                   <label htmlFor="remarks" className="form-label">
                     Remarks
@@ -185,14 +228,13 @@ const SLComment = ({
                   ></textarea>
                 </div>
 
-                {/* Save Button */}
                 <button type="submit" className="btn btn-primary w-100">
                   SAVE ENTRY
                 </button>
               </>
             )}
 
-            {(userType === "secretriat" || userType === "anc") && (
+            {userType === "secretriat" && (
               <>
                 <div className="mb-3">
                   <label htmlFor="detailsOfDifference" className="form-label">
@@ -200,16 +242,14 @@ const SLComment = ({
                   </label>
                   <textarea
                     className="form-control"
-                    id="detailsOfDifference"
-                    name="detailsOfDifference"
+                    id="comment"
+                    name="comment"
                     rows="2"
-                    value={comments.detailsOfDifference}
-                    onChange={handleInputChange}
+                    value={commentsBySecretriate.comment}
+                    onChange={handleSecretriateChange}
                     placeholder="Please describe the difference clearly and concisely"
                   ></textarea>
                 </div>
-
-                {/* Remarks Text Area */}
                 <div className="mb-3">
                   <label htmlFor="remarks" className="form-label">
                     Remarks
@@ -217,15 +257,59 @@ const SLComment = ({
                   <textarea
                     className="form-control"
                     id="remarks"
-                    name="remarks"
+                    name="remark"
                     rows="2"
-                    value={comments.remarks}
-                    onChange={handleInputChange}
+                    value={commentsBySecretriate.remark}
+                    onChange={handleSecretriateChange}
                     placeholder="Please indicate reasons for the difference and any planned date for implementation"
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary w-100">
+                <button
+                  type="button"
+                  className="btn btn-primary w-100"
+                  onClick={handleSecretriateInput}
+                >
+                  SAVE ENTRY
+                </button>
+              </>
+            )}
+            {userType === "anc" && (
+              <>
+                <div className="mb-3">
+                  <label htmlFor="detailsOfDifference" className="form-label">
+                    Write your comment
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="comment"
+                    name="comment"
+                    rows="2"
+                    value={commentsByAnc.comment}
+                    onChange={handleAncChange}
+                    placeholder="Please describe the difference clearly and concisely"
+                  ></textarea>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="remarks" className="form-label">
+                    Remarks
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="remarks"
+                    name="remark"
+                    rows="2"
+                    value={commentsByAnc.remark}
+                    onChange={handleAncChange}
+                    placeholder="Please indicate reasons for the difference and any planned date for implementation"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="button"
+                  className="btn btn-primary w-100"
+                  onClick={handleAncInput}
+                >
                   SAVE ENTRY
                 </button>
               </>

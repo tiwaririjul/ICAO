@@ -8,6 +8,7 @@ import OpenPdf from "./OpenPdf";
 const ProvisionList = ({ type, selectedAnnexes, setSelectedAnnexes }) => {
   const [arrayType, setArrayType] = useState([]);
   const [openPdf, setOpenPdf] = useState(false);
+  const [selectedAnnex, setSelectedAnnex] = useState(null);
 
   useEffect(() => {
     if (type === "annexes") {
@@ -19,12 +20,9 @@ const ProvisionList = ({ type, selectedAnnexes, setSelectedAnnexes }) => {
     }
   }, [type]);
 
-  const handleCheckboxChange = (elem) => {
-    if (selectedAnnexes.includes(elem)) {
-      setSelectedAnnexes(selectedAnnexes.filter((item) => item !== elem));
-    } else {
-      setSelectedAnnexes([...selectedAnnexes, elem]);
-    }
+  const handleRadioChange = (elem) => {
+    setSelectedAnnex(elem);
+    setSelectedAnnexes([elem]);
   };
 
   return (
@@ -34,16 +32,14 @@ const ProvisionList = ({ type, selectedAnnexes, setSelectedAnnexes }) => {
         <div key={index} className="form-check mb-3">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              {type !== "Provision" && (
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id={`annex-${index}`}
-                  checked={selectedAnnexes.includes(elem)} // Check if it's selected
-                  onChange={() => handleCheckboxChange(elem)} // Handle checkbox change
-                />
-              )}
-
+              <input
+                type="radio"
+                className="form-check-input"
+                id={`annex-${index}`}
+                name="annex" // All radio buttons should have the same name
+                checked={selectedAnnex === elem} // Check if this annex is selected
+                onChange={() => handleRadioChange(elem)} // Handle selection
+              />
               <label className="form-check-label" htmlFor={`annex-${index}`}>
                 {elem}
               </label>

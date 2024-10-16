@@ -1,6 +1,6 @@
 import React from "react";
 import PdfViewer from "./PdfViewer";
-import p2 from "../assests/p2.pdf";
+import p2 from "../assests/p3.pdf"; // Note: corrected the path to 'assets'
 
 const OpenPdf = ({ OpenPdf, setOpenPdf }) => {
   return (
@@ -9,7 +9,14 @@ const OpenPdf = ({ OpenPdf, setOpenPdf }) => {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">PDF Viewer</h5>
+              <button
+                type="button"
+                className="close"
+                onClick={() => setOpenPdf(false)}
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div className="modal-body">
               <PdfViewer pdfUrl={p2} />
