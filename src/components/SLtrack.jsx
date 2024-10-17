@@ -15,7 +15,10 @@ const SLtrack = () => {
             setShowDetails(!showDetails);
             setShowDetailsc(false);
           }} // Toggle details on click
-          style={{ cursor: "pointer" }} // Add pointer to show it's clickable
+          style={{
+            cursor: "pointer",
+            clipPath: "polygon(0,0, 95% 0, 100% 50%, 95% 100%, 0 100%)", // camelCased clip-path
+          }}
         >
           <i className="fas fa-check"></i> State letter Upload and Parse
         </div>
@@ -139,7 +142,9 @@ const SLtrack = () => {
               className="progress-bar progress-bar-striped progress-bar-animated"
               role="progressbar"
               style={{ width: "80%" }}
-            >80%</div>
+            >
+              80%
+            </div>
           </div>
         </div>
       )}

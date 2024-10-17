@@ -13,6 +13,7 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import SLComment from "./components/SLcomment";
 import SLtrack from "./components/SLtrack";
 import STable from "./components/STable";
+import Confirm from "./components/stages/Confirm";
 
 function App() {
   // const pdfUrl = "./assests/ticket.pdf";
@@ -26,6 +27,8 @@ function App() {
             <Route path="/stateletter/:type" element={<SLinputs />} />
             <Route path="/parser" element={<Progress />} />
             <Route path="/track" element={<SLtrack />} />
+            <Route path="/" element={<Confirm />} />
+            
           </Routes>
         </Router>
         {/* <SLComment /> */}
