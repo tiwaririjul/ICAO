@@ -53,6 +53,7 @@ const Stages = ({ stage }) => {
         stateLetterInfo,
         chapters,
       };
+
       localStorage.setItem("progressData", JSON.stringify(storedData));
       // alert("stored");
     }
