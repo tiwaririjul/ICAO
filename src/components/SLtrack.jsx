@@ -6,41 +6,39 @@ const SLtrack = () => {
   const [showDetailsc, setShowDetailsc] = useState(false);
 
   return (
-    <div className="container mt-4">
-      <div className="d-flex justify-content-center">
-        <div className="approval-container">
-          {/* Clickable div that toggles the date display */}
-          <div
-            className="approval-step approval-initiated status-Green"
-            onClick={() => setShowDetails(!showDetails)} // Toggle details on click
-            style={{ cursor: "pointer" }} // Add pointer to show it's clickable
-          >
-            <i className="fas fa-check"></i> State letter Upload and Parse
-          </div>
+    <div className="container mt-4" style={{ marginLeft: "300px" }}>
+      <div className="d-flex all approval-container ">
+        {/* Clickable div that toggles the date display */}
+        <div
+          className="status-badge-green"
+          onClick={() => {
+            setShowDetails(!showDetails);
+            setShowDetailsc(false);
+          }} // Toggle details on click
+          style={{ cursor: "pointer" }} // Add pointer to show it's clickable
+        >
+          <i className="fas fa-check"></i> State letter Upload and Parse
+        </div>
 
-          {/* Arrow and other steps */}
-          <div className="arrow">
-            <i className="fas fa-arrow-right"></i>
-          </div>
-          <div
-            className="approval-step history status-Blue"
-            onClick={() => setShowDetailsc(!showDetailsc)} // Toggle details on click
-            style={{ cursor: "pointer" }} // Add pointer to show it's clickable
-          >
-            <i className="fas fa-history"></i> State Comments
-          </div>
-          <div className="arrow">
-            <i className="fas fa-arrow-right"></i>
-          </div>
-          <div className="approval-step director-approval status-Gray">
-            <i className="fas fa-lock"></i> State Comment Analysis
-          </div>
+        {/* Arrow and other steps */}
+        <div
+          className="status-badge-blue"
+          onClick={() => {
+            setShowDetailsc(!showDetailsc);
+            setShowDetails(false);
+          }} // Toggle details on click
+          style={{ cursor: "pointer" }} // Add pointer to show it's clickable
+        >
+          <i className="fas fa-history"></i> State Comments
+        </div>
+        <div className="status-badge-gray">
+          <i className="fas fa-lock"></i> State Comment Analysis
         </div>
       </div>
 
       {/* Show the first set of details when State letter Upload and Parse is clicked */}
       {showDetails && (
-        <div class="col-md-6" style={{ marginTop: 40 }}>
+        <div className="col-md-6" style={{ marginTop: 40 }}>
           <p>Created: 16-03-2019</p>
           <p>Sent: 17-03-2019</p>
         </div>
@@ -48,7 +46,7 @@ const SLtrack = () => {
 
       {/* Show the second set of details and table when State Comments is clicked */}
       {showDetailsc && (
-        <div class="col-md-6" style={{ marginTop: 40 }}>
+        <div className="col-md-6" style={{ marginTop: 40 }}>
           <p>Date count Down: 16-03-2019</p>
           <p>Total Provision: 12</p>
 
@@ -62,7 +60,7 @@ const SLtrack = () => {
             </thead>
             <tbody>
               <tr>
-                <td>IN</td>
+                <td>India</td>
                 <td>
                   <div className="progress">
                     <div
@@ -96,7 +94,7 @@ const SLtrack = () => {
                 </td>
               </tr>
               <tr>
-                <td>FR</td>
+                <td>Canada</td>
                 <td>
                   <div className="progress">
                     <div
@@ -113,7 +111,7 @@ const SLtrack = () => {
                 </td>
               </tr>
               <tr>
-                <td>BR</td>
+                <td>Pakistan</td>
                 <td>
                   <div className="progress">
                     <div
@@ -133,15 +131,15 @@ const SLtrack = () => {
           </table>
 
           {/* Additional Progress Bar */}
-          <div class="progress">
+          <div>
+            <h3>Over all Progress</h3>
+          </div>
+          <div className="progress">
             <div
-              class="progress-bar progress-bar-striped progress-bar-animated"
+              className="progress-bar progress-bar-striped progress-bar-animated"
               role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style={{width: "75%"}}
-            ></div>
+              style={{ width: "80%" }}
+            >80%</div>
           </div>
         </div>
       )}
