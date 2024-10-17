@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PdfViewer from "./PdfViewer";
 import { states } from "../utils/data";
+import { toast } from "react-toastify";
 
 const SLComment = ({
   selectedPdf,
@@ -76,10 +77,24 @@ const SLComment = ({
       [index]: detailsToStore.state,
     }));
 
-    localStorage.setItem(
-      `${selectedState}'s'${index}`,
-      JSON.stringify(detailsToStore)
-    );
+    // localStorage.setItem(
+    //   `${selectedState}'s'${index}`,
+    //   JSON.stringify(detailsToStore)
+    // );
+
+    // const saveData = `${selectedState}'s'${index}`;
+
+    const keyToStore = `${selectedState}'s'${index}`;
+
+    localStorage.setItem(keyToStore, JSON.stringify(detailsToStore));
+
+    let storedKeysArray =
+      JSON.parse(localStorage.getItem("storedKeysArray")) || [];
+
+    if (!storedKeysArray.includes(keyToStore)) {
+      storedKeysArray.push(keyToStore);
+      localStorage.setItem("storedKeysArray", JSON.stringify(storedKeysArray));
+    }
 
     setSelectedState("");
     setComments({
@@ -88,14 +103,29 @@ const SLComment = ({
       detailsOfDifference: "",
       remarks: "",
     });
+
+    toast.success("Your comment has been saved", {
+      autoClose: 3000,
+      closeOnClick: true,
+    });
   };
 
   const handleSecretriateInput = () => {
     if (String(commentsBySecretriate).trim() !== "") {
-      localStorage.setItem(
-        `S${selectedProvision.provisionId}`,
-        JSON.stringify(commentsBySecretriate)
-      );
+      const keyToStore = `S${selectedProvision.provisionId}`;
+
+      localStorage.setItem(keyToStore, JSON.stringify(commentsBySecretriate));
+
+      let storedKeysArray =
+        JSON.parse(localStorage.getItem("storedKeysArray")) || [];
+
+      if (!storedKeysArray.includes(keyToStore)) {
+        storedKeysArray.push(keyToStore);
+        localStorage.setItem(
+          "storedKeysArray",
+          JSON.stringify(storedKeysArray)
+        );
+      }
     } else {
       alert("Secretriate comments cannot be empty");
     }
@@ -108,10 +138,25 @@ const SLComment = ({
 
   const handleAncInput = () => {
     if (String(commentsByAnc).trim() !== "") {
-      localStorage.setItem(
-        `A${selectedProvision.provisionId}`,
-        JSON.stringify(commentsByAnc)
-      );
+      const keyToStore = `A${selectedProvision.provisionId}`;
+
+      localStorage.setItem(keyToStore, JSON.stringify(commentsByAnc));
+
+      let storedKeysArray =
+        JSON.parse(localStorage.getItem("storedKeysArray")) || [];
+
+      if (!storedKeysArray.includes(keyToStore)) {
+        storedKeysArray.push(keyToStore);
+        localStorage.setItem(
+          "storedKeysArray",
+          JSON.stringify(storedKeysArray)
+        );
+
+        setCommentsByAnc({
+          comment: "",
+          remark: "",
+        });
+      }
     } else {
       alert("ANC comments cannot be empty");
     }
