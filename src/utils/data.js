@@ -41,6 +41,10 @@ export const ancProgresBarContents = [
     index: 6,
     content: "Confirm",
   },
+  {
+    index: 7,
+    content: "Send",
+  },
 ];
 
 export const states = [

@@ -96,8 +96,11 @@ const SLtrack = () => {
           onClick={() => {
             setShowDetails(!showDetails);
             setShowDetailsc(false);
+          }} // Toggle details on click
+          style={{
+            cursor: "pointer",
+            clipPath: "polygon(0,0, 95% 0, 100% 50%, 95% 100%, 0 100%)", // camelCased clip-path
           }}
-          style={{ cursor: "pointer" }}
         >
           <i className="fas fa-check"></i> State letter Upload and Parse
         </div>

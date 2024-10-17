@@ -20,22 +20,25 @@ const Progress = () => {
   };
 
   return (
-    <div class="container">
-      <div class="stepper">
+    <div
+      className="container"
+      style={{ position: "relative", minHeight: "100vh" }}
+    >
+      <div className="stepper">
         {ancProgresBarContents.map((ancProgresBarContent) => (
           <div
-            className={`step  ${
+            className={`step ${
               currentStep === ancProgresBarContent.index ? "active" : ""
             } ${currentStep > ancProgresBarContent.index ? "completed" : ""}`}
             key={ancProgresBarContent.index}
           >
-            <div class="step-icon">
-              <i class="fas fa-shopping-basket"></i>
+            <div className="step-icon">
+              <i className="fas fa-shopping-basket"></i>
             </div>
-            <div class="step-text">
+            <div className="step-text">
               {ancProgresBarContent.content}
               {currentStep > ancProgresBarContent.index && (
-                <i class="fas fa-check-circle"></i>
+                <i className="fas fa-check-circle"></i>
               )}
             </div>
           </div>
@@ -44,16 +47,37 @@ const Progress = () => {
 
       <Stages stage={currentStep} />
 
-      <div className="navigation-buttons">
+      {/* Display the Confirm button only on steps 6 and 7 */}
+      {(currentStep === 6 || currentStep === 7) && (
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleNext}
+          style={{
+            position: "absolute",
+            right: "20px",
+            bottom: "20px",
+          }}
+        >
+          CONFIRM
+        </button>
+      )}
+
+      <div className="navigation-buttons" style={{ marginTop: "20px" }}>
+        {/* Display the Previous button on all steps except the first one */}
         <button onClick={handlePrev} disabled={currentStep === 1}>
           Previous
         </button>
-        <button
-          onClick={handleNext}
-          disabled={currentStep === ancProgresBarContents.length}
-        >
-          Next
-        </button>
+
+        {/* Display the Next button on all steps except 6 and 7 */}
+        {currentStep < 6 && (
+          <button
+            onClick={handleNext}
+            disabled={currentStep === ancProgresBarContents.length}
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

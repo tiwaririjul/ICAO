@@ -27,7 +27,7 @@ const ProvisionList = ({ type, selectedAnnexes, setSelectedAnnexes }) => {
 
   return (
     <div className="container mt-4">
-      <h3>Select {type}</h3>
+      <h3>List of {type}</h3>
       {arrayType.map((elem, index) => (
         <div key={index} className="form-check mb-3">
           <div className="d-flex justify-content-between align-items-center">

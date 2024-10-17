@@ -102,6 +102,9 @@ const Stages = ({ stage }) => {
     case 6:
       return <Confirm />;
 
+    case 7:
+      return <div>Final</div>;
+
     default:
       return (
         <div className="container">No content available for this stage</div>
