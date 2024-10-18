@@ -32,8 +32,11 @@ const Progress = () => {
             } ${currentStep > ancProgresBarContent.index ? "completed" : ""}`}
             key={ancProgresBarContent.index}
           >
-            <div className="step-icon">
-              <i className="fas fa-shopping-basket"></i>
+            <div
+              className="step-icon"
+              onClick={() => setCurrentStep(ancProgresBarContent.index)}
+            >
+              {ancProgresBarContent.icon}
             </div>
             <div className="step-text">
               {ancProgresBarContent.content}
@@ -57,13 +60,14 @@ const Progress = () => {
             position: "absolute",
             right: "20px",
             bottom: "20px",
+            marginTop: "20px",
           }}
         >
           CONFIRM
         </button>
       )}
 
-      <div className="navigation-buttons" style={{ marginTop: "20px" }}>
+      <div className="navigation-buttons" style={{ marginTop: "30px" }}>
         {/* Display the Previous button on all steps except the first one */}
         <button onClick={handlePrev} disabled={currentStep === 1}>
           Previous
