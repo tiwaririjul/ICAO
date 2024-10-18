@@ -113,6 +113,11 @@ const SLinputs = () => {
       const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
       setDaysLeft(daysRemaining);
+
+      alert("updating date");
+
+      localStorage.setItem("daysRemaining", daysRemaining);
+      localStorage.setItem("creationDate", stateLetterUploadDate);
     }
   }, [stateLetterUploadDate]);
 

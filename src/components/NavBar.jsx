@@ -60,7 +60,7 @@ const NavBar = () => {
                 <Link className="dropdown-item" to="/stateletter/slview">
                   State Letter Viewer
                 </Link>
-                <Link className="dropdown-item" to="/stateletter/anc">
+                <Link className="dropdown-item" to="/track">
                   State letter tracking
                 </Link>
               </div>

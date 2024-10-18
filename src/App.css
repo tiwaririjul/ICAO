@@ -82,3 +82,103 @@ button:disabled {
   margin: auto;
   height: 800px;
 }
+
+.approval-step {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+}
+.approval-initiated {
+  background-color: #8bc34a;
+}
+.history {
+  background-color: #42a5f5;
+}
+.director-approval {
+  background-color: #bdbdbd;
+}
+.approval-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.approval-container i {
+  margin-right: 10px;
+}
+
+
+
+.status-badge-green {
+  display: inline-flex;
+  align-items: center;
+  background-color: #8bc34a;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 30px 0 0 30px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.status-badge-green::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #8bc34a;
+}
+.status-badge-blue {
+  display: inline-flex;
+  align-items: center;
+  background-color: #42a5f5;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 30px 0 0 30px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.status-badge-blue::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #42a5f5;
+}
+.status-badge-gray {
+  display: inline-flex;
+  align-items: center;
+  background-color: #bdbdbd;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 30px 0 0 30px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.status-badge-gray::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #bdbdbd;
+}
+.all {
+  width: 850px;
+  display: flex;
+  justify-content: space-evenly;
+}

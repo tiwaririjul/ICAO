@@ -20,26 +20,37 @@ export const ancProgresBarContents = [
   {
     index: 1,
     content: "Document Type",
+    icon: <i className="fas fa-shopping-basket"></i>,
   },
   {
     index: 2,
     content: "Select Annex",
+    icon: <i className="fas fa-shopping-basket"></i>,
   },
   {
     index: 3,
     content: "Annex Version",
+    icon: <i className="fas fa-map-marker-alt"></i>,
   },
   {
     index: 4,
     content: "Chapters",
+    icon: <i class="fas fa-dollar-sign"></i>,
   },
   {
     index: 5,
     content: "Provisions",
+    icon: <i class="fas fa-dollar-sign"></i>,
   },
   {
     index: 6,
     content: "Confirm",
+    icon: <i class="fas fa-check-square"></i>,
+  },
+  {
+    index: 7,
+    content: "Send",
+    icon: <i class="fas fa-mail-bulk"></i>,
   },
 ];
 

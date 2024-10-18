@@ -27,19 +27,21 @@ const ProvisionList = ({ type, selectedAnnexes, setSelectedAnnexes }) => {
 
   return (
     <div className="container mt-4">
-      <h3>Select {type}</h3>
+      <h3>List of {type}</h3>
       {arrayType.map((elem, index) => (
         <div key={index} className="form-check mb-3">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <input
-                type="radio"
-                className="form-check-input"
-                id={`annex-${index}`}
-                name="annex" // All radio buttons should have the same name
-                checked={selectedAnnex === elem} // Check if this annex is selected
-                onChange={() => handleRadioChange(elem)} // Handle selection
-              />
+              {type !== "Provision" && (
+                <input
+                  type="radio"
+                  className="form-check-input"
+                  id={`annex-${index}`}
+                  name="annex"
+                  checked={selectedAnnex === elem}
+                  onChange={() => handleRadioChange(elem)}
+                />
+              )}
               <label className="form-check-label" htmlFor={`annex-${index}`}>
                 {elem}
               </label>
